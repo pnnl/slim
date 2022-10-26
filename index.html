@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SLiM: Structured Linear Maps &mdash; SLiM 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/slim.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="includeme.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> SLiM
+          
+
+          
+            
+            <img src="_static/slim.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linear.html">Linear</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rnn.html">RNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">SLiM</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>SLiM: Structured Linear Maps</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="slim-structured-linear-maps">
+<h1>SLiM: Structured Linear Maps<a class="headerlink" href="#slim-structured-linear-maps" title="Permalink to this heading">¶</a></h1>
+<p>This package provides a suite of structured linear maps which can be used as drop-in replacements for PyTorch’s nn.Linear module. Recent work viewing neural networks from a dynamical systems perspective has introduced a host of parametrizations for the basic linear maps which are subcomponents of neural networks. Such parametrizations may enhance the stability of learning, and embed models with inductive priors that encode domain application knowledge. This package is an effort to collect these all in one place with a common API to facilitate rapid exploration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We encourage folks to contribute any new structured linear maps as feature requests.</p>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Linear Map</p></th>
+<th class="head"><p>class</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://arxiv.org/abs/1612.00188">Orthogonal</a></p></td>
+<td><p><a class="reference internal" href="linear.html#linear.OrthogonalLinear" title="linear.OrthogonalLinear"><code class="xref any py py-class docutils literal notranslate"><span class="pre">OrthogonalLinear</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://arxiv.org/pdf/1712.01312.pdf">L0</a></p></td>
+<td><p><a class="reference internal" href="linear.html#linear.L0Linear" title="linear.L0Linear"><code class="xref any py py-class docutils literal notranslate"><span class="pre">L0Linear</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/HazyResearch/learning-circuits">Butterfly</a></p></td>
+<td><p><a class="reference internal" href="linear.html#linear.ButterflyLinear" title="linear.ButterflyLinear"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ButterflyLinear</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://arxiv.org/pdf/1803.09327.pdf">Spectral</a></p></td>
+<td><p><a class="reference internal" href="linear.html#linear.SpectralLinear" title="linear.SpectralLinear"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SpectralLinear</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://papers.nips.cc/paper/9513-non-normal-recurrent-neural-network-nnrnn-learning-long-time-dependencies-while-improving-expressivity-with-transient-dynamics.pdf">Schur Decomposition</a></p></td>
+<td><p><a class="reference internal" href="linear.html#linear.SchurDecompositionLinear" title="linear.SchurDecompositionLinear"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SchurDecompositionLinear</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://leon.bottou.org/publications/pdf/compstat-2010.pdf">Lasso</a></p></td>
+<td><p><a class="reference internal" href="linear.html#linear.LassoLinear" title="linear.LassoLinear"><code class="xref any py py-class docutils literal notranslate"><span class="pre">LassoLinear</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://arxiv.org/abs/1705.03341">Symplectic</a></p></td>
+<td><p><a class="reference internal" href="linear.html#linear.SymplecticLinear" title="linear.SymplecticLinear"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SymplecticLinear</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://arxiv.org/abs/1705.03341">AntiSymmetric</a></p></td>
+<td><p><a class="reference internal" href="linear.html#linear.SkewSymmetricLinear" title="linear.SkewSymmetricLinear"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SkewSymmetricLinear</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="benchmarks">
+<h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this heading">¶</a></h2>
+<p>Sequence to Classification:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ieeexplore.ieee.org/abstract/document/6296535">MNIST</a></p></li>
+<li><p><a class="reference external" href="https://icml.cc/Conferences/2011/papers/532_icmlpaper.pdf">XOR</a></p></li>
+</ul>
+<p>Point to Classification:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1705.03341.pdf">Concentric Ellipses</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1705.03341.pdf">Swiss Roll</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1705.03341.pdf">Peaks</a></p></li>
+</ul>
+<p>Sequence to Regression:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.676.4320&amp;rep=rep1&amp;type=pdf">Add</a></p></li>
+<li><p><a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.676.4320&amp;rep=rep1&amp;type=pdf">Multiply</a></p></li>
+</ul>
+<p>Point to Regression:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.71.2526&amp;rep=rep1&amp;type=pdf">Ackley</a></p></li>
+</ul>
+<p>Dynamics:</p>
+<ul class="simple">
+<li><p>Building models</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Docs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linear.html">Linear</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.BoundedNormLinear"><code class="docutils literal notranslate"><span class="pre">BoundedNormLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.ButterflyLinear"><code class="docutils literal notranslate"><span class="pre">ButterflyLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.DampedSkewSymmetricLinear"><code class="docutils literal notranslate"><span class="pre">DampedSkewSymmetricLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.GershgorinLinear"><code class="docutils literal notranslate"><span class="pre">GershgorinLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.Hprod"><code class="docutils literal notranslate"><span class="pre">Hprod()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.IdentityGradReLU"><code class="docutils literal notranslate"><span class="pre">IdentityGradReLU</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.IdentityInitLinear"><code class="docutils literal notranslate"><span class="pre">IdentityInitLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.IdentityLinear"><code class="docutils literal notranslate"><span class="pre">IdentityLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.L0Linear"><code class="docutils literal notranslate"><span class="pre">L0Linear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.LassoLinear"><code class="docutils literal notranslate"><span class="pre">LassoLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.LassoLinearRELU"><code class="docutils literal notranslate"><span class="pre">LassoLinearRELU</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.LeftStochasticLinear"><code class="docutils literal notranslate"><span class="pre">LeftStochasticLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.Linear"><code class="docutils literal notranslate"><span class="pre">Linear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.LinearBase"><code class="docutils literal notranslate"><span class="pre">LinearBase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.NonNegativeLinear"><code class="docutils literal notranslate"><span class="pre">NonNegativeLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.OrthogonalLinear"><code class="docutils literal notranslate"><span class="pre">OrthogonalLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.PSDLinear"><code class="docutils literal notranslate"><span class="pre">PSDLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.PerronFrobeniusLinear"><code class="docutils literal notranslate"><span class="pre">PerronFrobeniusLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.RightStochasticLinear"><code class="docutils literal notranslate"><span class="pre">RightStochasticLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SVDLinear"><code class="docutils literal notranslate"><span class="pre">SVDLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SVDLinearLearnBounds"><code class="docutils literal notranslate"><span class="pre">SVDLinearLearnBounds</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SchurDecompositionLinear"><code class="docutils literal notranslate"><span class="pre">SchurDecompositionLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SkewSymmetricLinear"><code class="docutils literal notranslate"><span class="pre">SkewSymmetricLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SpectralLinear"><code class="docutils literal notranslate"><span class="pre">SpectralLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SplitLinear"><code class="docutils literal notranslate"><span class="pre">SplitLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SquareLinear"><code class="docutils literal notranslate"><span class="pre">SquareLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.StableSplitLinear"><code class="docutils literal notranslate"><span class="pre">StableSplitLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SymmetricLinear"><code class="docutils literal notranslate"><span class="pre">SymmetricLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SymmetricSVDLinear"><code class="docutils literal notranslate"><span class="pre">SymmetricSVDLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SymmetricSpectralLinear"><code class="docutils literal notranslate"><span class="pre">SymmetricSpectralLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.SymplecticLinear"><code class="docutils literal notranslate"><span class="pre">SymplecticLinear</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear.html#linear.TrivialNullSpaceLinear"><code class="docutils literal notranslate"><span class="pre">TrivialNullSpaceLinear</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rnn.html">RNN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rnn.html#rnn.RNN"><code class="docutils literal notranslate"><span class="pre">RNN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnn.html#rnn.RNNCell"><code class="docutils literal notranslate"><span class="pre">RNNCell</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="includeme.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Aaron Tuor, Jan Drgona, Elliott Skomski, Soumya Vasisht
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
