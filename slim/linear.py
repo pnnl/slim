@@ -788,9 +788,88 @@ class TrivialNullSpaceLinear(LinearBase):
         return torch.cat([W_upper, self.Gl2]).T
 
 
+
+
+
+
+
+
+
+
+
+class PowerBoundLinear(LinearBase):
+    """
+    Linear map with constrained spectral radius via the power method.
+    """
+    def __init__(self, insize, outsize, max_p = 1,pwr_iters = 200, bias=False, **kwargs):
+        """
+
+        :param max_p: Upper bound on the spectral radius.
+        :param pwr_iters: Number of power method iterations to use in estimating the spectral radius.
+
+        """
+        assert insize == outsize, f'Map must be square. insize={insize} and outsize={outsize}'
+        super().__init__(insize, outsize, bias=bias, provide_weights=False)
+        self.insize = insize
+        self.outsize = outsize
+        
+        self.W = nn.Parameter(torch.rand(self.insize, self.insize))
+        self.max_p = max_p
+        self.pwr_iters = pwr_iters
+
+
+    def eig_v_estimate(self):
+        n_iterates = self.pwr_iters
+        
+        a = torch.normal(0,1,(self.in_features,1))
+        a = a.to(self.device)
+        b = torch.normal(0,1,(self.in_features,1))
+        b = b.to(self.device)
+
+         
+        with torch.no_grad():
+            for i in range(n_iterates):
+                a = torch.mm(self.W,a)
+                b = torch.mm(self.W,b)
+                a_ib_nrm = torch.sqrt( torch.mm(torch.t(a),a) + torch.mm(torch.t(b),b)   )
+                a = (1/a_ib_nrm)*a
+                b = (1/a_ib_nrm)*b
+
+        return [a,b]
+        
+
+    def reg_error(self):
+        """
+        Regularization error enforces upper bound on spectral radius
+        """
+        [a,b] = self.eig_v_estimate()    
+        a_ib_nsq = torch.mm(torch.t(a),a) + torch.mm(torch.t(b),b)
+        v = torch.mm(torch.t(torch.mm(self.W,a)),torch.mm(self.W,a)) + torch.mm(torch.t(torch.mm(self.W,b)),torch.mm(self.W,b))
+        v = v/a_ib_nsq
+        v = v[0][0]
+        return torch.nn.functional.relu( v - self.max_p  )
+        
+    
+
+    def effective_W(self):
+        return self.W
+
+
+
+
+
+
+
+
+
+
+
+
 square_maps = {SymmetricLinear, SkewSymmetricLinear, DampedSkewSymmetricLinear, PSDLinear,
                OrthogonalLinear, SymplecticLinear, SchurDecompositionLinear, SymmetricSpectralLinear,
-               SymmetricSVDLinear, GershgorinLinear}
+               SymmetricSVDLinear, GershgorinLinear, PowerBoundLinear}
+
+tall_maps = {TrivialNullSpaceLinear}
 
 maps = {'l0': L0Linear,
         'linear': Linear,
@@ -815,7 +894,26 @@ maps = {'l0': L0Linear,
         'identity': IdentityLinear,
         'gershgorin': GershgorinLinear,
         'bounded_Lp_norm': BoundedNormLinear,
-        'trivial_nullspace': TrivialNullSpaceLinear}
+        'trivial_nullspace': TrivialNullSpaceLinear,
+        'Power_bound': PowerBoundLinear}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
@@ -831,7 +929,7 @@ if __name__ == '__main__':
     long = torch.rand(3, 8)
     tall = torch.rand(8, 3)
 
-    for linear in set(list(maps.values())) - square_maps:
+    for linear in set(list(maps.values())) - square_maps - tall_maps:
         print(linear)
         map = linear(3, 5)
         print(map.reg_error())
@@ -848,6 +946,13 @@ if __name__ == '__main__':
         assert (x.shape[0], x.shape[1]) == (8, 8)
         x = map(long)
         assert (x.shape[0], x.shape[1]) == (3, 8)
+
+    for linear in tall_maps:
+        print(linear)
+        map = linear(3, 5)
+        x = map(tall)
+        assert (x.shape[0], x.shape[1]) == (8, 5)
+
 
 
 
